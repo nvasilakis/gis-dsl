@@ -28,7 +28,7 @@ records = []
 file1 = DBF::Table.new("input.dbf")
 file2 = DBF::Table.new("input.dbf")
 file1.each do |record|
-  row_rec = Segment.new(record.attributes["COUNT_coun"])
+  row_rec = Segment.new(record.attributes["COUNT_coun"]) #note: we represent COUNT_coun as weight
   row_rec.x_start=record.attributes["x_start"]
   row_rec.y_start=record.attributes["y_start"]
   row_rec.x_end=record.attributes["x_end"]
