@@ -1,4 +1,4 @@
-A mini project written in many languages
+A mini project written in many languages.
 
 Using a shortest-path weighted tree, the application recalculates the edge's weights based on predefined weight ranges (e.g. if edge.weight === 0...10 then edge.weight = 2). The algorithm is smart enough to take into consideration weights of the children edges, in order to re-calculate a parent's weight.
 
