@@ -14,7 +14,7 @@ class Segment
 	end
 
   def addChild(child)
-    @listOfChildren = child
+    @listOfChildren << child
   end
   
   # return 1 if it is the leaf of the tree, 0 if not
