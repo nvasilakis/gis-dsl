@@ -51,18 +51,25 @@ class Tree
     end
   end
 
+  # subtree = list of node id's
   def recalc(subtree)
     fullCount = 0
     subtree.each do |node|
       unless node.normalize==1
         # if not leaf
-        recalc(holon.searchFor(node).listOfChildren)
+        #recalc(holon.searchFor(node).listOfChildren)
+        recalc(self.searchFor(node).listOfChildren)
       else  
         node.normalize
       end
       # uplogizw to sum of coun and re-normalize
       fullCount = fullCount + node.weight
     end
+  end
+
+  # search for an edge with edge_id = index != array_index
+  def searchFor(index)
+    p index
   end
 
   def get(index)

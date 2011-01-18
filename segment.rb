@@ -12,6 +12,16 @@ class Segment
 		@weight= count
     @listOfChildren = []
 	end
+  
+  def loadValues( x_start, y_start, x_end  ,y_end  ,length ,is_leaf, edge_id )
+      @x_start = x_start
+      @y_start = y_start
+      @x_end   = x_end  
+      @y_end   = y_end  
+      @length  = length 
+      @is_leaf = is_leaf
+      @edge_id = edge_id
+  end
 
   def addChild(child)
     @listOfChildren << child
