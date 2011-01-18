@@ -9,6 +9,8 @@ require 'rubygems' # for dbf gem
 require 'segment'
 require 'dbf'      # gem install dbf
 
+#TODO Synchronize array index value with edge_id ( use loadValues functio)
+
 class Tree
 
   @structure
