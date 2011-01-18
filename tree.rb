@@ -73,16 +73,3 @@ class Tree
 end
 
 
-    #if (node.is_leaf == 1)
-      #node.
-    #end  
-
-holon = Tree.new
-holon.load("input.dbf")
-holon.build
-#holon.
-seg = holon.get(0)
-puts " row 1 count: #{seg.class} and edge id: #{seg.class}"
-#puts " row 1 count: #{records[0].weight} and edge id: #{records[0].edge_id}"
-
-
