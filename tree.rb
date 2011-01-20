@@ -55,7 +55,7 @@ class Tree
           segment.addChild(segment_copy.edge_id)
         end
       end
-      puts "[debug] [build] row edge id: #{segment.edge_id}"
+      puts "[debug] [build] row edge id: #{segment.edge_id} with weight #{segment.weight}"
     end
   end
 
@@ -96,6 +96,13 @@ p komvos
       if node.edge_id == index 
         return node end
     end
+  end
+
+  def getRoot
+    new_struct = @structure.sort { |a, b| b.weight <=> a.weight }
+    # new_struct = @structure.sort_by { |isegment| isegment.weight }
+    puts "root is #{new_struct[0].edge_id} with weight #{new_struct[0].weight}"
+    return new_struct[0]
   end
 
   # return array_index
