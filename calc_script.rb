@@ -18,13 +18,13 @@ puts "--------"
 root = tree.get_root
 puts "--------"
 
-puts " row 0 count: #{tree.get(0).weight} and edge id: #{tree.get(0).edge_id}"
-puts " row 1 count: #{tree.get(1).weight} and edge id: #{tree.get(1).edge_id}"
+puts " row 0 count(weight): #{tree.get(0).weight} and edge id: #{tree.get(0).edge_id}"
+puts " row 1 count(weight): #{tree.get(1).weight} and edge id: #{tree.get(1).edge_id}"
 #puts " row 1 count: #{records[0].weight} and edge id: #{records[0].edge_id}"
 
 tree.recalculate(root)
-puts " row 0 count: #{tree.get(0).weight} and edge id: #{tree.get(0).edge_id}"
-puts " row 1 count: #{tree.get(1).weight} and edge id: #{tree.get(1).edge_id}"
+puts " row 0 count(weight): #{tree.get(0).weight} and edge id: #{tree.get(0).edge_id}"
+puts " row 1 count(weight): #{tree.get(1).weight} and edge id: #{tree.get(1).edge_id}"
 puts "--------"
 tree.get_root
 puts "--------"

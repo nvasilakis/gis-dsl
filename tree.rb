@@ -72,11 +72,10 @@ class Tree
   # PREPEI NA TO TRE3W STO ROOT TOU DENTROU TO OPOIO PREPEI NA FTIA3W STHN BUILD
   def recalculate(inode)
     full_count = 0
-    puts " WTF!!!!!!!!!!"
     inode.list_of_children.each do |node|
-p node
+#p node
       komvos = self.get(node)
-p komvos
+#p komvos
       if komvos.normalize==0
         puts "node #{node} is not leaf"
         # if not leaf
@@ -90,7 +89,6 @@ p komvos
       # uplogizw to sum of coun and re-normalize
       full_count = full_count + komvos.weight
     end
-    puts " WTF!!!!!!!!!!"
     inode.weight = full_count
   end
 
@@ -103,16 +101,17 @@ p komvos
     end
   end
 
+  # return the Tree.root
   def get_root
     new_struct = @structure.sort { |a, b| b.weight <=> a.weight }
     # new_struct = @structure.sort_by { |isegment| isegment.weight }
-    puts "root is #{new_struct[0].edge_id} with weight #{new_struct[0].weight}"
+    puts "[debug][get_root] root: #{new_struct[0].edge_id} with weight #{new_struct[0].weight}"
     new_struct[0]
   end
 
   # return array_index
   def get(index)
-    puts "[debug] index: #{index}"
+    puts "[debug][get] index: #{index}"
     segment = @structure[index]
     segment
   end
