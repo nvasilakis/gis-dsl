@@ -30,33 +30,29 @@ class Segment
   end
 
   def load_validations (file ="weights.csv")
-    puts "Loading Validations: 0%"
+    puts "[debug] [load_validations] Loading Validations: 0%"
     @@validations = [["Start","End","Result"]]
     reader = CSV.open(file, "r")
     # we have headers
     reader.shift
     reader.each do |row|
-      @@validations << [row[0],row[1],row[2]]
+      @@validations << [row[0].to_i,row[1].to_i,row[2].to_i]  # Conversion from csv_cell to fixnum
     end
-    puts "Loading Validations: 100%"
+    puts "[debug] [load_validations] Loading Validations: 100%"
   end
 
   # return 1 if it is the leaf of the tree, 0 if not
   # TODO: Render validations from a csv file
   def normalize
+    puts "[debug] [normalize] node weight: #{@weight.class}"
     if @is_leaf == 1
-      case @weight
-        when 0...2 then @weight=2
-        when 2...4 then @weight=4
-        when 4...8 then @weight=8
-        when 8...16 then @weight=16
-        when 16...32 then @weight=32
-        when 32...64 then @weight=64
-        when 64...128 then @weight=128
-        when 128...256 then @weight=256
-        when 256...512 then @weight=512
-        when 512...1024 then @weight=1024
-        when 1024...2048 then @weight=2048
+      @@validations.each do |validation|
+        puts "[debug] [normalize] current validation: |#{validation[0].class}|#{validation[1]}|#{validation[2]}|"
+        if (validation[0]...validation[1]) === @weight
+          puts "Bang!"
+          @weight=validation[2]
+          break
+        end
       end
       1
     else

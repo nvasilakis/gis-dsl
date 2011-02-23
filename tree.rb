@@ -28,17 +28,21 @@ class Tree
     @structure.push(row1)
     #loading the rest of the file.
     copy1 = DBF::Table.new(file)
+    i = 0
     copy1.each do |record|
-      row_rec = Segment.new(record.attributes["COUNT_coun"]) #note: we represent COUNT_coun as weight
-      row_rec.x_start=record.attributes["x_start"]
-      row_rec.y_start=record.attributes["y_start"]
-      row_rec.x_end=record.attributes["x_end"]
-      row_rec.y_end=record.attributes["y_end"]
-      row_rec.length=record.attributes["length"]
-      row_rec.is_leaf=record.attributes["is_leave"] #note: is_leaf is erroneously represented as is_leave
-      row_rec.edge_id=record.attributes["edge_id"]
-      puts "[debug] [load] row edge id: #{row_rec.edge_id}"
-      @structure.push(row_rec)
+      if (i <= 1)
+        row_rec = Segment.new(record.attributes["COUNT_coun"]) #note: we represent COUNT_coun as weight
+        row_rec.x_start=record.attributes["x_start"]
+        row_rec.y_start=record.attributes["y_start"]
+        row_rec.x_end=record.attributes["x_end"]
+        row_rec.y_end=record.attributes["y_end"]
+        row_rec.length=record.attributes["length"]
+        row_rec.is_leaf=record.attributes["is_leave"] #note: is_leaf is erroneously represented as is_leave
+        row_rec.edge_id=record.attributes["edge_id"]
+        puts "[debug] [load] row edge id: #{row_rec.edge_id} with weight #{row_rec.weight}"
+        @structure.push(row_rec)
+        i+=1
+      end
     end
   end
 
