@@ -28,6 +28,7 @@ class Segment
   end
   
   # return 1 if it is the leaf of the tree, 0 if not
+  # TODO: Render validations from a csv file
   def normalize
     if @is_leaf == 1
       case @weight
