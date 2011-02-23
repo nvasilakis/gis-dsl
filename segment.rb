@@ -3,17 +3,19 @@
 # Author: Nikos Vasilakis	
 # email:  n.c.vasilakis@gmail.com	
 
+require "csv"
 
 class Segment
 
-	attr_accessor :weight, :x_start, :y_start, :x_end, :y_end, :length, :is_leaf, :edge_id, :parent, :listOfChildren
+  @@validations = []
+	attr_accessor :weight, :x_start, :y_start, :x_end, :y_end, :length, :is_leaf, :edge_id, :parent, :list_of_children
 
 	def initialize(count)
 		@weight= count
-    @listOfChildren = []
+    @list_of_children = []
 	end
   
-  def loadValues( x_start, y_start, x_end  ,y_end  ,length ,is_leaf, edge_id )
+  def load_values( x_start, y_start, x_end  ,y_end  ,length ,is_leaf, edge_id )
       @x_start = x_start
       @y_start = y_start
       @x_end   = x_end  
@@ -23,10 +25,22 @@ class Segment
       @edge_id = edge_id
   end
 
-  def addChild(child)
-    @listOfChildren << child
+  def add_child(child)
+    @list_of_children << child
   end
-  
+
+  def load_validations (file ="weights.csv")
+    puts "Loading Validations: 0%"
+    @@validations = [["Start","End","Result"]]
+    reader = CSV.open(file, "r")
+    # we have headers
+    reader.shift
+    reader.each do |row|
+      @@validations << [row[0],row[1],row[2]]
+    end
+    puts "Loading Validations: 100%"
+  end
+
   # return 1 if it is the leaf of the tree, 0 if not
   # TODO: Render validations from a csv file
   def normalize
@@ -44,9 +58,9 @@ class Segment
         when 512...1024 then @weight=1024
         when 1024...2048 then @weight=2048
       end
-      return 1
+      1
     else
-      return 0
+      0
     end
   end
 

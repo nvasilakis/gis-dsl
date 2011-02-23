@@ -11,22 +11,22 @@ require "tree"
 #end  
 
 
-holon = Tree.new
-holon.load("input.dbf")
-holon.build
+tree = Tree.new
+tree.load("input.dbf")
+tree.build
 puts "--------"
-root = holon.getRoot
+root = tree.get_root
 puts "--------"
 
-puts " row 0 count: #{holon.get(0).weight} and edge id: #{holon.get(0).edge_id}"
-puts " row 1 count: #{holon.get(1).weight} and edge id: #{holon.get(1).edge_id}"
+puts " row 0 count: #{tree.get(0).weight} and edge id: #{tree.get(0).edge_id}"
+puts " row 1 count: #{tree.get(1).weight} and edge id: #{tree.get(1).edge_id}"
 #puts " row 1 count: #{records[0].weight} and edge id: #{records[0].edge_id}"
 
-holon.recalc(root)
-puts " row 0 count: #{holon.get(0).weight} and edge id: #{holon.get(0).edge_id}"
-puts " row 1 count: #{holon.get(1).weight} and edge id: #{holon.get(1).edge_id}"
+tree.recalculate(root)
+puts " row 0 count: #{tree.get(0).weight} and edge id: #{tree.get(0).edge_id}"
+puts " row 1 count: #{tree.get(1).weight} and edge id: #{tree.get(1).edge_id}"
 puts "--------"
-holon.getRoot
+tree.get_root
 puts "--------"
 
 

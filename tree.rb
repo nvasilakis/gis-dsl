@@ -23,7 +23,8 @@ class Tree
   def load(file)
     # Synchronizing array index value with edge_id
     row1 = Segment.new(0)
-    row1.loadValues(0, 0, 0, 0, 0, 0, 0)
+    row1.load_validations("weights.csv")
+    row1.load_values(0, 0, 0, 0, 0, 0, 0)
     @structure.push(row1)
     #loading the rest of the file.
     copy1 = DBF::Table.new(file)
@@ -52,7 +53,7 @@ class Tree
         end
         # start(i) = end(children(i))
         if segment_copy.x_end==segment.x_start
-          segment.addChild(segment_copy.edge_id)
+          segment.add_child(segment_copy.edge_id)
         end
       end
       puts "[debug] [build] row edge id: #{segment.edge_id} with weight #{segment.weight}"
@@ -65,8 +66,8 @@ class Tree
   # ARA stelnw komvo pou exei olh thn plhroforia tou komvou
   #
   # PREPEI NA TO TRE3W STO ROOT TOU DENTROU TO OPOIO PREPEI NA FTIA3W STHN BUILD
-  def recalc(inode)
-    fullCount = 0
+  def recalculate(inode)
+    full_count = 0
     puts " WTF!!!!!!!!!!"
     inode.listOfChildren.each do |node|
 p node
@@ -76,21 +77,21 @@ p komvos
         puts "node #{node} is not leaf"
         # if not leaf
         #recalc(holon.searchFor(node).listOfChildren)
-        self.recalc(komvos)
+        self.recalculate(komvos)
       else  
         # exw kanei: node.normalize kai einai leaf
         puts "node #{node} is leaf"
         
       end
       # uplogizw to sum of coun and re-normalize
-      fullCount = fullCount + komvos.weight
+      full_count = full_count + komvos.weight
     end
     puts " WTF!!!!!!!!!!"
-    inode.weight = fullCount
+    inode.weight = full_count
   end
 
   # search for an edge with edge_id = index != array_index
-  def searchFor(index)
+  def search_for(index)
     p index
     @structure.each do |node|
       if node.edge_id == index 
@@ -98,18 +99,18 @@ p komvos
     end
   end
 
-  def getRoot
+  def get_root
     new_struct = @structure.sort { |a, b| b.weight <=> a.weight }
     # new_struct = @structure.sort_by { |isegment| isegment.weight }
     puts "root is #{new_struct[0].edge_id} with weight #{new_struct[0].weight}"
-    return new_struct[0]
+    new_struct[0]
   end
 
   # return array_index
   def get(index)
     puts "[debug] index: #{index}"
     segment = @structure[index]
-    return segment
+    segment
   end
 end
 
