@@ -69,7 +69,7 @@ class Tree
   def recalculate(inode)
     full_count = 0
     puts " WTF!!!!!!!!!!"
-    inode.listOfChildren.each do |node|
+    inode.list_of_children.each do |node|
 p node
       komvos = self.get(node)
 p komvos
